@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Java client library &mdash; Central Dogma 0.17.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="stylesheet" href="_static/overrides.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Central Dogma 0.17.0 documentation" href="index.html"/>
+        <link rel="next" title="Better configuration change workflow with Git-to-CD mirroring" href="mirroring.html"/>
+        <link rel="prev" title="Command-line client" href="client-cli.html"/>
+  <script src="_static/center_page.js"></script>
+   
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/central_dogma.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.17
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setting up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client-cli.html">Command-line client</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Java client library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adding-centraldogma-client-as-a-dependency">Adding <code class="docutils literal highlight highlight-default"><span></span><span class="n">centraldogma</span><span class="o">-</span><span class="n">client</span></code> as a dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-client">Creating a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-a-file">Getting a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pushing-a-commit">Pushing a commit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#watching-a-file">Watching a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-the-javadoc">Read the Javadoc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mirroring.html">Better configuration change workflow with Git-to-CD mirroring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known-issues.html">Known issues</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/line/centraldogma/releases">Release notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="apidocs/index.html#://">API documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="xref/index.html#://">Source cross-reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/line/centraldogma/issues?q=label%3Aquestion-answered">Questions and answers</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/line/centraldogma">Fork me at GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/line/centraldogma/blob/master/CONTRIBUTING.md">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Central Dogma</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Java client library</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/line/centraldogma/blob/master/site/src/sphinx/client-java.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="java-client-library">
+<span id="client-java"></span><h1>Java client library<a class="headerlink" href="#java-client-library" title="Permalink to this headline">¶</a></h1>
+<p>The Java client library is the first class client implementation that provides the access to all operations
+exposed by a Central Dogma server.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Keep <a class="reference external" href="apidocs/index.html">the API documentation</a> open in another browser tab. You’ll find it to be a very useful companion.</p>
+</div>
+<div class="section" id="adding-centraldogma-client-as-a-dependency">
+<h2>Adding <code class="docutils literal highlight highlight-default"><span></span><span class="n">centraldogma</span><span class="o">-</span><span class="n">client</span></code> as a dependency<a class="headerlink" href="#adding-centraldogma-client-as-a-dependency" title="Permalink to this headline">¶</a></h2>
+<p>Gradle:</p>
+<pre class="literal-block">
+...
+dependencies {
+    ...
+    compile 'com.linecorp.centraldogma:centraldogma-client:0.17.0'
+    ...
+}
+...
+</pre>
+<p>Maven:</p>
+<pre class="literal-block">
+...
+&lt;dependencies&gt;
+  ...
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.linecorp.centraldogma&lt;/groupId&gt;
+    &lt;artifactId&gt;centraldogma-client&lt;/artifactId&gt;
+    &lt;version&gt;0.17.0&lt;/version&gt;
+  &lt;/dependency&gt;
+  ...
+&lt;/dependencies&gt;
+...
+</pre>
+</div>
+<div class="section" id="creating-a-client">
+<h2>Creating a client<a class="headerlink" href="#creating-a-client" title="Permalink to this headline">¶</a></h2>
+<p>First, we should create a new instance of <code class="docutils literal highlight highlight-default"><span></span><span class="n">CentralDogma</span></code>:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.client.CentralDogma</span><span class="o">;</span>
+
+<span class="n">CentralDogma</span> <span class="n">dogma</span> <span class="o">=</span> <span class="n">CentralDogma</span><span class="o">.</span><span class="na">newClient</span><span class="o">(</span><span class="s">&quot;tbinary+http://127.0.0.1:36462/cd/thrift/v1&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Internally, the client uses <a class="reference external" href="https://line.github.io/armeria/">Armeria</a> as its networking layer. You may want to use <code class="docutils literal highlight highlight-default"><span></span><span class="n">CentralDogmaBuilder</span></code>
+to customize the client settings, such as specifying alternative Armeria <code class="docutils literal highlight highlight-default"><span></span><span class="n">ClientFactory</span></code> or configuring
+Armeria <code class="docutils literal highlight highlight-default"><span></span><span class="n">ClientBuilder</span></code>.</p>
+</div>
+</div>
+<div class="section" id="getting-a-file">
+<h2>Getting a file<a class="headerlink" href="#getting-a-file" title="Permalink to this headline">¶</a></h2>
+<p>Once a client is created, you can get a file from a repository:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.Entry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.EntryType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.Revision</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.Query</span><span class="o">;</span>
+
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">future</span> <span class="o">=</span>
+        <span class="n">dogma</span><span class="o">.</span><span class="na">getFile</span><span class="o">(</span><span class="s">&quot;myProj&quot;</span><span class="o">,</span> <span class="s">&quot;myRepo&quot;</span><span class="o">,</span> <span class="n">Revision</span><span class="o">.</span><span class="na">HEAD</span><span class="o">,</span> <span class="n">Query</span><span class="o">.</span><span class="na">identity</span><span class="o">(</span><span class="s">&quot;/a.txt&quot;</span><span class="o">));</span>
+
+<span class="n">Entry</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+<span class="k">assert</span> <span class="n">entry</span><span class="o">.</span><span class="na">type</span><span class="o">()</span> <span class="o">==</span> <span class="n">EntryType</span><span class="o">.</span><span class="na">TEXT</span>
+<span class="k">assert</span> <span class="n">entry</span><span class="o">.</span><span class="na">content</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">String</span><span class="o">;</span> <span class="c1">// Text file&#39;s content type is String.</span>
+<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">content</span><span class="o">());</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal highlight highlight-default"><span></span><span class="n">getFile</span><span class="p">()</span></code> call above will fetch the latest revision of <code class="docutils literal highlight highlight-default"><span></span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">txt</span></code> because we specified <code class="docutils literal highlight highlight-default"><span></span><span class="n">Revision</span><span class="o">.</span><span class="n">HEAD</span></code>
+which is equal to <code class="docutils literal highlight highlight-default"><span></span><span class="n">new</span> <span class="n">Revision</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></code>. If you want to fetch a specific revision, you can specify the revision
+you desire. e.g. <code class="docutils literal highlight highlight-default"><span></span><span class="n">new</span> <span class="n">Revision</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span></code> or <code class="docutils literal highlight highlight-default"><span></span><span class="n">new</span> <span class="n">Revision</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not sure what the meaning of a negative revision number is? Read <a class="reference internal" href="concepts.html#concepts"><span class="std std-ref">Concepts</span></a>.</p>
+</div>
+<p>Note that we used <code class="docutils literal highlight highlight-default"><span></span><span class="n">Query</span><span class="o">.</span><span class="n">identity</span><span class="p">()</span></code>, which tells Central Dogma to fetch the content in verbatim.
+Alternatively, if the file is JSON, you can use <code class="docutils literal highlight highlight-default"><span></span><span class="n">Query</span><span class="o">.</span><span class="n">ofJsonPath</span><span class="p">()</span></code>:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.JsonNode</span><span class="o">;</span>
+
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">JsonNode</span><span class="o">&gt;&gt;</span> <span class="n">future</span> <span class="o">=</span>
+        <span class="n">dogma</span><span class="o">.</span><span class="na">getFile</span><span class="o">(</span><span class="s">&quot;myProj&quot;</span><span class="o">,</span> <span class="s">&quot;myRepo&quot;</span><span class="o">,</span> <span class="n">Revision</span><span class="o">.</span><span class="na">HEAD</span><span class="o">,</span>
+                      <span class="n">Query</span><span class="o">.</span><span class="na">ofJsonPath</span><span class="o">(</span><span class="s">&quot;/b.json&quot;</span><span class="o">,</span> <span class="s">&quot;$.someValue&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+<p>Did you notice the return type changed slightly? The type parameter of <code class="docutils literal highlight highlight-default"><span></span><span class="n">Entry</span></code> is not <code class="docutils literal highlight highlight-default"><span></span><span class="n">Object</span></code> anymore but
+<code class="docutils literal highlight highlight-default"><span></span><span class="n">JsonNode</span></code> (from <a class="reference external" href="https://github.com/FasterXML/jackson">Jackson</a>), because we know we are fetching a JSON
+file. Central Dogma server will apply the JSON path expression <code class="docutils literal highlight highlight-default"><span></span>$.someValue</code> to the content of <code class="docutils literal highlight highlight-default"><span></span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">json</span></code>
+and return the query result to the client. For example, if <code class="docutils literal highlight highlight-default"><span></span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">json</span></code> contains the following:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nt">&quot;someValue&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="nt">&quot;otherValue&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>You would get:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="mi">42</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Central Dogma uses <a class="reference external" href="https://github.com/json-path/JsonPath">Jayway’s JSON path implementation</a>.
+Refer to their project page for syntax, example and the list of supported functions.</p>
+</div>
+</div>
+<div class="section" id="pushing-a-commit">
+<h2>Pushing a commit<a class="headerlink" href="#pushing-a-commit" title="Permalink to this headline">¶</a></h2>
+<p>You can also push a commit into a repository programmatically:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.Author</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.Change</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.common.Commit</span><span class="o">;</span>
+
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Commit</span><span class="o">&gt;</span> <span class="n">future</span> <span class="o">=</span>
+        <span class="n">dogma</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">&quot;myProj&quot;</span><span class="o">,</span> <span class="s">&quot;myRepo&quot;</span><span class="o">,</span> <span class="n">Revision</span><span class="o">.</span><span class="na">HEAD</span><span class="o">,</span>
+                   <span class="k">new</span> <span class="n">Author</span><span class="o">(</span><span class="s">&quot;John Doe&quot;</span><span class="o">,</span> <span class="s">&quot;john@doe.com&quot;</span><span class="o">),</span>
+                   <span class="s">&quot;Add /c.json and remove /b.json&quot;</span><span class="o">,</span>
+                   <span class="n">Change</span><span class="o">.</span><span class="na">ofUpsert</span><span class="o">(</span><span class="s">&quot;/c.json&quot;</span><span class="o">,</span> <span class="s">&quot;{ \&quot;foo\&quot;: \&quot;bar\&quot; }&quot;</span><span class="o">),</span>
+                   <span class="n">Change</span><span class="o">.</span><span class="na">ofRemoval</span><span class="o">(</span><span class="s">&quot;/b.json&quot;</span><span class="o">));</span>
+
+<span class="n">Commit</span> <span class="n">commit</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Pushed a commit &quot;</span> <span class="o">+</span> <span class="n">commit</span><span class="o">.</span><span class="na">revision</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; at &quot;</span> <span class="o">+</span> <span class="n">commit</span><span class="o">.</span><span class="na">whenAsText</span><span class="o">());</span>
+</pre></div>
+</div>
+<p>In this example, we pushed a commit that contains two changes: one that adds <code class="docutils literal highlight highlight-default"><span></span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">json</span></code> and the other that
+removes <code class="docutils literal highlight highlight-default"><span></span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">json</span></code>.</p>
+<p>Note that we specified <code class="docutils literal highlight highlight-default"><span></span><span class="n">Revision</span><span class="o">.</span><span class="n">HEAD</span></code> as the base revision. It means this commit is against the latest
+commit in the repository <code class="docutils literal highlight highlight-default"><span></span><span class="n">myRepo</span></code>. Alternatively, you can specify an absolute revision so that you are
+absolutely sure that nobody pushed a commit while you prepare yours: (pun intended 😉)</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.concurrent.CompletionException</span><span class="o">;</span>
+
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Commit</span><span class="o">&gt;</span> <span class="n">future</span> <span class="o">=</span> <span class="n">dogma</span><span class="o">.</span><span class="na">push</span><span class="o">(...,</span> <span class="k">new</span> <span class="n">Revision</span><span class="o">(</span><span class="mi">3</span><span class="o">),</span> <span class="o">...);</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">future</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CompletionException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Throwable</span> <span class="n">cause</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getCause</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">cause</span> <span class="k">instanceof</span> <span class="n">CentralDogmaException</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">CentralDogmaException</span> <span class="n">cde</span> <span class="o">=</span> <span class="o">(</span><span class="n">CentralDogmaException</span><span class="o">)</span> <span class="n">cause</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">cde</span><span class="o">.</span><span class="na">getErrorCode</span><span class="o">()</span> <span class="o">==</span> <span class="n">ErrorCode</span><span class="o">.</span><span class="na">CHANGE_CONFLICT</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Somebody pushed a commit newer than revision 3 or</span>
+            <span class="c1">// our changes cannot be applied to the revision 3 cleanly.</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="watching-a-file">
+<h2>Watching a file<a class="headerlink" href="#watching-a-file" title="Permalink to this headline">¶</a></h2>
+<p>Some configuration properties are dynamic. They are changed often and they must be applied without restarting
+the process. The client library provides an easy way to watch a file:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.client.Latest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.linecorp.centraldogma.client.Watcher</span><span class="o">;</span>
+
+<span class="n">Watcher</span><span class="o">&lt;</span><span class="n">JsonNode</span><span class="o">&gt;</span> <span class="n">watcher</span> <span class="o">=</span> <span class="n">dogma</span><span class="o">.</span><span class="na">fileWatcher</span><span class="o">(</span><span class="s">&quot;myRepo&quot;</span><span class="o">,</span> <span class="s">&quot;myProj&quot;</span><span class="o">,</span> <span class="n">Query</span><span class="o">.</span><span class="na">ofJsonPath</span><span class="o">(</span><span class="s">&quot;$.foo&quot;</span><span class="o">));</span>
+
+<span class="c1">// Register a callback for changes.</span>
+<span class="n">watcher</span><span class="o">.</span><span class="na">watch</span><span class="o">((</span><span class="n">revision</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Foo has been updated to &quot;</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">&quot; (revision: &quot;</span> <span class="o">+</span> <span class="n">revision</span> <span class="o">+</span> <span class="sc">&#39;)&#39;</span><span class="o">);</span>
+<span class="o">});</span>
+
+<span class="c1">// Alternatively, without using a callback:</span>
+<span class="n">Latest</span><span class="o">&lt;</span><span class="n">JsonNode</span><span class="o">&gt;</span> <span class="n">latest</span> <span class="o">=</span> <span class="n">watcher</span><span class="o">.</span><span class="na">latest</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Current foo: &quot;</span> <span class="o">+</span> <span class="n">latest</span><span class="o">.</span><span class="na">value</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; (revision: &quot;</span> <span class="o">+</span> <span class="n">latest</span><span class="o">.</span><span class="na">revision</span><span class="o">()</span> <span class="o">+</span> <span class="sc">&#39;)&#39;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>You would want to register a callback to the <code class="docutils literal highlight highlight-default"><span></span><span class="n">Watcher</span></code> or check the return value of <code class="docutils literal highlight highlight-default"><span></span><span class="n">Watcher</span><span class="o">.</span><span class="n">latest</span><span class="p">()</span></code>
+periodically to apply the new settings to your application.</p>
+</div>
+<div class="section" id="read-the-javadoc">
+<h2>Read the Javadoc<a class="headerlink" href="#read-the-javadoc" title="Permalink to this headline">¶</a></h2>
+<p>Refer to <a class="reference external" href="apidocs/index.html?com/linecorp/centraldogma/client/CentralDogma.html">the API documentation of ‘CentralDogma’ class</a>
+for the complete list of operations you can perform with a Central Dogma server, which should be definitely
+much more than what this tutorial covers, such as fetching and watching multiple files.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mirroring.html" class="btn btn-neutral float-right" title="Better configuration change workflow with Git-to-CD mirroring" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="client-cli.html" class="btn btn-neutral" title="Command-line client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2017, LINE Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.17.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <div class="github-fork-ribbon-wrapper right">
+    <div class="github-fork-ribbon">
+      <a href="https://github.com/line/centraldogma">Fork me at GitHub</a>
+    </div>
+  </div>
+  <script type="text/javascript" src="_static/add_badges.js"></script>
+   
+
+
+</body>
+</html>
