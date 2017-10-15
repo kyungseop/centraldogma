@@ -21,3 +21,5 @@ Just [create a new issue](https://github.com/line/centraldogma/issues/new) to as
 ## How to contribute
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## CI test
